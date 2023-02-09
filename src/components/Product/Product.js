@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import styles from "./Product.module.css";
-export default function Product() {
+export default function Product(props) {
+    const [currImg, setCurrImg] = useState(props.currProduct.imgUrls[0]);
+    const stars = props.currProduct.stars;
+    console.log(stars);
     const oneStar = (
         <div className={styles.stars}>
             <svg stroke="currentColor" fill="rgb(255, 185, 0)" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"></path></svg>
@@ -48,33 +51,35 @@ export default function Product() {
         </div>
     )
 
+    function handleClick(){
+        props.setFrontPage(true);
+    }
+
+    function handleImgClick(image){
+        setCurrImg(image);
+    }
     return (
         <div className={styles.container}>
             <div className={styles.image}>
-                <button>BACK TO PRODUCTS</button>
-                <img src="https://res.cloudinary.com/social-upload-prod-media-cld/image/upload/shopify/1/0207/8508/collections/BFFURNITURE_5.jpg?v=1668721310"></img>
+                <button onClick={handleClick}>BACK TO PRODUCTS</button>
+                <img src={currImg}></img>
                 <div className={styles.imgCollection}>
-                    <img src="https://res.cloudinary.com/social-upload-prod-media-cld/image/upload/shopify/1/0207/8508/collections/BFFURNITURE_5.jpg?v=1668721310"></img>
-                    <img src="https://res.cloudinary.com/social-upload-prod-media-cld/image/upload/shopify/1/0207/8508/collections/BFFURNITURE_5.jpg?v=1668721310"></img>
-                    <img src="https://res.cloudinary.com/social-upload-prod-media-cld/image/upload/shopify/1/0207/8508/collections/BFFURNITURE_5.jpg?v=1668721310"></img>
-                    <img src="https://res.cloudinary.com/social-upload-prod-media-cld/image/upload/shopify/1/0207/8508/collections/BFFURNITURE_5.jpg?v=1668721310"></img>
-                    <img src="https://res.cloudinary.com/social-upload-prod-media-cld/image/upload/shopify/1/0207/8508/collections/BFFURNITURE_5.jpg?v=1668721310"></img>
+                {props.currProduct.imgUrls.map((image, i) => (
+                    <img key={i} src={image} onClick={()=>handleImgClick(image)} style={currImg===image?{border: "solid", borderColor:"green"}: {}}></img>
+                ))}
                 </div>
             </div>
             <div className={styles.desc}>
-                <h1>Product Name</h1>
-                {fourStar}
-                <p className={styles.revs}>(100 Customer Reviews)</p>
-                <h3>$30.99</h3>
-                <p className={styles.description}>Cloud bread VHS hell of banjo bicycle rights jianbing
-                    umami mumblecore etsy 8-bit pok pok +1 wolf. Vexillologist yr dreamcatcher
-                    waistcoat, authentic chillwave trust fund. Viral typewriter fingerstache
-                    pinterest pork belly narwhal. Schlitz venmo everyday carry kitsch pitchfork
-                    chillwave iPhone taiyaki trust fund hashtag kinfolk microdosing gochujang live-edge
+                <h1>{props.currProduct.name}</h1>
+                {stars===1 ? oneStar : stars=== 2 ? twoStar : stars===3 ? threeStar : stars===4 ? fourStar : stars===5? fiveStar : ""}
+
+                <p className={styles.revs}>({props.currProduct.customerRevs} Customer Reviews)</p>
+                <h3>${props.currProduct.price}</h3>
+                <p className={styles.description}>{props.currProduct.desc}
                 </p>
-                <h3 style={{color:"#243a52"}}>Available: <span style={{color:"black", fontWeight:"300", fontSize:"18px"}}>In Stock</span></h3>
-                <h3 style={{color:"#243a52"}}>SKU: <span style={{color:"black", fontWeight:"300", fontSize:"18px"}}>RecQ0fMd8T0Vk211E</span></h3>
-                <h3 style={{color:"#243a52"}}>Brand: <span style={{color:"black", fontWeight:"300", fontSize:"18px"}}>Liddy</span></h3>
+                <h3 style={{color:"#243a52"}}>Available: <span style={{color:"black", fontWeight:"300", fontSize:"18px"}}>{props.currProduct.available}</span></h3>
+                <h3 style={{color:"#243a52"}}>SKU: <span style={{color:"black", fontWeight:"300", fontSize:"18px"}}>{props.currProduct.sku}</span></h3>
+                <h3 style={{color:"#243a52"}}>Brand: <span style={{color:"black", fontWeight:"300", fontSize:"18px"}}>{props.currProduct.company}</span></h3>
                 <hr />
             </div>
         </div>

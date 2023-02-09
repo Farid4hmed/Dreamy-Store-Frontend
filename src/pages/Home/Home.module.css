@@ -27,16 +27,26 @@
 
 .productsTitle{
     color: rgba(4,129,89,0.923);
+    -webkit-transition: color 0.5s;
+    -moz-transition:    color 0.5s;
+    -ms-transition:     color 0.5s;
+    -o-transition:      color 0.5s;
+    transition:         color 0.5s;
     position: absolute;
     top: 32%;
-    left: 17.3%;
+    left: 17%;
+}
+
+.productsTitle:hover{
+    cursor: pointer;
+    color: #32b856;
 }
 
 .itemTitle{
-    color: rgba(4,129,89,0.923);
+    color: #32b856;
     position: absolute;
     top: 32%;
-    left: 28.7%;
+    left: 28.4%;
 }
 
 .container{
