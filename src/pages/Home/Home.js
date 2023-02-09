@@ -10,8 +10,12 @@ import styles from "./Home.module.css";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
-  const [currProduct, setCurrProduct] = useState({});
+  const [tempProducts, setTempProducts] = useState([]);
 
+  const [currProduct, setCurrProduct] = useState({});
+  const [currSearch, setCurrSearch] = useState("");
+
+  const [currSort, setCurrSort] = useState("Price (Lowest)")
   const [frontPage, setFrontPage] = useState(true);
   const blackBG = { background: "black" };
   const whiteBG = { background: "white" };
@@ -26,33 +30,39 @@ export default function Home() {
 
   useEffect(() => {
     fetchProducts();
-    products.sort(byPriceLowest);
-      setProducts([...products]);
   }, []);
 
 
   async function fetchProducts() {
     const result = await getProducts();
-    if (result) setProducts(result);
+    if (result) {
+      setProducts(result);
+      setTempProducts(result);
+    }
     else console.log("Couldn't fetch products");
   }
 
   function handleSelect(option) {
+    setCurrSort(option);
     if (option === "Price (Lowest)") {
       products.sort(byPriceLowest);
       setProducts([...products]);
+      if (currSearch === "") setTempProducts([...products]);
     }
     else if (option === "Price (Highest)") {
       products.sort(byPriceHighest);
       setProducts([...products]);
+      if (currSearch === "") setTempProducts([...products]);
     }
     else if (option === "Name (A-Z)") {
       products.sort(byNameAZ);
       setProducts([...products]);
+      if (currSearch === "") setTempProducts([...products]);
     }
     else if (option === "Name (Z-A)") {
       products.sort(byNameZA);
       setProducts([...products]);
+      if (currSearch === "") setTempProducts([...products]);
     }
   }
 
@@ -80,12 +90,11 @@ export default function Home() {
     else return 0;
   }
 
-
   return (
     <div className={styles.background}>
       <div className={styles.navbar}>
         <h1 className={styles.homeTitle}>Home </h1>
-        <h1 className={frontPage ? styles.productsTitleFrontPage : styles.productsTitleProductPage} onClick={() => {setFrontPage(true)}}>/ Products</h1>
+        <h1 className={frontPage ? styles.productsTitleFrontPage : styles.productsTitleProductPage} onClick={() => { setFrontPage(true) }}>/ Products</h1>
         <h1 className={styles.itemTitle}>{!frontPage ? (`/ ${currProduct.name}`) : ""}</h1>
       </div>
       {frontPage ?
@@ -110,7 +119,18 @@ export default function Home() {
               <option>Name (Z-A)</option>
             </select>
           </form>
-          <Sidebar />
+          <Sidebar
+            setProducts={setProducts}
+            products={products}
+            tempProducts={tempProducts}
+            currSearch={currSearch}
+            setCurrSearch={setCurrSearch}
+            byPriceLowest={byPriceLowest}
+            byPriceHighest={byPriceHighest}
+            byNameAZ={byNameAZ}
+            byNameZA={byNameZA}
+            currSort={currSort}
+          />
           {gridView ? <GridView products={products} setFrontPage={setFrontPage} setCurrProduct={setCurrProduct} /> : <ListView products={products} setFrontPage={setFrontPage} setCurrProduct={setCurrProduct} />}
         </div>
         : <Product currProduct={currProduct} setFrontPage={setFrontPage} />}
