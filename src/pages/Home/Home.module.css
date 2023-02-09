@@ -42,14 +42,14 @@
 .container{
     display: flex;
     position: absolute;
-    height: 150%;
+    height: fit-content;
     width: 82%;
     left: 8%;
 }
 
 .container hr{
     position: absolute;
-    top: 5%;
+    top: 50px;
     left: 40%;
     width: 40%;
     color: grey;
@@ -57,13 +57,13 @@
 
 .noOfProducts{
     position: absolute;
-    top: 4.1%;
+    top: 40px;
     left: 27%;
 }
 
 .grid{
     position: absolute;
-    top: 3.9%;
+    top: 40px;
     left: 19%;
     height: 25px;
     width: 25px;
@@ -73,6 +73,10 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 2.5px;
+}
+
+.grid:hover{
+    cursor: pointer;
 }
 
 .box{
@@ -86,7 +90,7 @@
 
 .list{
     position: absolute;
-    top: 3.9%;
+    top: 40px;
     left: 22%;
     height: 25px;
     width: 25px;
@@ -94,6 +98,10 @@
     border-radius: 5px;
     border-width: 1px;
 
+}
+
+.list:hover{
+    cursor: pointer;
 }
 
 .list svg{
@@ -104,7 +112,7 @@
 
 .container form{
     position: absolute;
-    top: 4%;
+    top: 40px;
     left: 82%;
 }
 

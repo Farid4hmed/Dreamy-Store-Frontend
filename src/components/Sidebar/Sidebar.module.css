@@ -7,9 +7,9 @@
 }
 
 .search{
-    margin-top: 22%;
+    margin-top: 35px;
     margin-left: 12%;
-    height: 4%;
+    height: 30px;
     background-color: #f1f5f8;
     border-style: none;
     border-radius: 5px;
@@ -46,7 +46,7 @@
 
 .company{
     position: absolute;
-    top: 40%;
+    top: 255px;
 
 }
 
@@ -55,7 +55,7 @@
     width: 40%;
     height: 3%;
     margin-left: 12%;
-    margin-top: 15%;
+    margin-top: 20%;
     border-radius: 5px;
     border-style: none;
 }
@@ -117,4 +117,9 @@
     border-radius: 4px;
     height: 27px;
     width: 100px;
+}
+
+.clearFilters:hover{
+    background-color: rgb(178, 30, 30);
+    cursor: pointer;
 }

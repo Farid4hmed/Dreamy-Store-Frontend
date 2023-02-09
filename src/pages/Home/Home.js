@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import GridView from '../../components/GridView/GridView';
 import ListView from '../../components/ListView/ListView';
+import Product from '../../components/Product/Product';
 import Sidebar from '../../components/Sidebar/Sidebar';
 
 import styles from "./Home.module.css";
 
 export default function Home() {
+  const [frontPage, setFrontPage] = useState(true);
   const blackBG = { background: "black"};
   const whiteBG = { background: "white"};
   const [gridView, setGridView] = useState(true);
@@ -23,6 +25,7 @@ export default function Home() {
           <h1 className={styles.productsTitle}>/  Products</h1>
           <h1 className={styles.itemTitle}>/  item name</h1>
         </div>
+        {frontPage?
         <div className={styles.container}>
             <button className={styles.grid} style={gridView?blackBG: whiteBG} onClick={handleGridClick}>
             <div className={styles.box} style={gridView? whiteBG: blackBG}></div>
@@ -47,6 +50,7 @@ export default function Home() {
             <Sidebar />
             {gridView? <GridView /> : <ListView />}
         </div>
+        :<Product />}
     </div>
   )
 }
