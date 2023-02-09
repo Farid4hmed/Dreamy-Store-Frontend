@@ -30,6 +30,9 @@
     overflow-y: scroll;
 }
 
+.category button:hover{
+    cursor: pointer;
+}
 
 
 .category button{
@@ -60,6 +63,10 @@
     border-style: none;
 }
 
+.brand:hover{
+    cursor: pointer;
+}
+
 .colors{
     height: 25px;
     width: 70%;
@@ -70,22 +77,27 @@
 }
 
 .colors button{
-    margin-right: 10px;
+    margin-right: 7px;
     border-style: none;
     background-color: white;
 }
 
 .colorCircle{
+    opacity: 60%;
     height: 15px;
     width: 15px;
-    background-color: red;
     border-radius: 50%;
     padding: 1px;
+}
+
+.colors button:hover{
+    cursor: pointer;
 }
 
 .price{
     margin-left: 12%;
     margin-top: 5%;
+    color: #324d67;
 }
 
 .slider{

@@ -13,7 +13,7 @@
 
 .navbar{
     position: relative;
-    height:  165px;
+    height:  150px;
     width: 100%;
     background-color: #d7eadb;
 }
@@ -25,7 +25,19 @@
     left: 10%;
 }
 
-.productsTitle{
+.productsTitleFrontPage{
+    color: #32b856;
+    -webkit-transition: color 0.5s;
+    -moz-transition:    color 0.5s;
+    -ms-transition:     color 0.5s;
+    -o-transition:      color 0.5s;
+    transition:         color 0.5s;
+    position: absolute;
+    top: 32%;
+    left: 17%;
+}
+
+.productsTitleProductPage{
     color: rgba(4,129,89,0.923);
     -webkit-transition: color 0.5s;
     -moz-transition:    color 0.5s;
@@ -37,7 +49,7 @@
     left: 17%;
 }
 
-.productsTitle:hover{
+.productsTitleProductPage:hover{
     cursor: pointer;
     color: #32b856;
 }

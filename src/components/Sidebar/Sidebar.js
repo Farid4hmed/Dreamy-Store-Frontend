@@ -34,14 +34,12 @@ export default function Sidebar() {
 
             <h4>Colors</h4>
             <div className={styles.colors}>
-                <button>All</button>
-                <button ><div className={styles.colorCircle}>
-                {tick}
-                </div></button>
-                <button><div className={styles.colorCircle}></div></button>
-                <button><div className={styles.colorCircle}></div></button>
-                <button><div className={styles.colorCircle}></div></button>
-                <button><div className={styles.colorCircle}></div></button>
+                <button onClick={()=>{setColor("All")}} >{color==="All"?(<u>All</u>):"All"}</button>
+                <button onClick={()=>{setColor("red")}}><div className={styles.colorCircle} style={{backgroundColor: "red"}}>{color==="red"?tick: ""}</div></button>
+                <button onClick={()=>{setColor("green")}}><div className={styles.colorCircle} style={{backgroundColor: "green"}}>{color==="green"?tick: ""}</div></button>
+                <button onClick={()=>{setColor("blue")}}><div className={styles.colorCircle} style={{backgroundColor: "blue"}}>{color==="blue"?tick: ""}</div></button>
+                <button onClick={()=>{setColor("black")}}><div className={styles.colorCircle} style={{backgroundColor: "black"}}>{color==="black"?tick: ""}</div></button>
+                <button onClick={()=>{setColor("yellow")}}><div className={styles.colorCircle} style={{backgroundColor: "orange"}}>{color==="yellow"?tick: ""}</div></button>
             </div>
 
             <h4>Price</h4>
