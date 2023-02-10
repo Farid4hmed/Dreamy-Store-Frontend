@@ -6,6 +6,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 35px;
     line-height: 60%;
+    min-height: fit-content;
 }
 
 .product img{
