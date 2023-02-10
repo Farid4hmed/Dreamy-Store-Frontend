@@ -1,16 +1,16 @@
 .container{
     margin-left: 1%;
-    margin-top: 8.5%;
-    margin-bottom: 5%;
-    width: 79%;
+    margin-bottom: 15%;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 35px;
+    line-height: 60%;
 }
 
 .product img{
         border-radius: 5px;
-        min-width: 100%;
+        min-width: 95%;
         max-height: 175px;
 }
 
@@ -20,9 +20,9 @@
 }
 
 .details{
-    margin-top: 5px;
+    margin-top: 5%;
     font-size: large;
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: space-between;
 }

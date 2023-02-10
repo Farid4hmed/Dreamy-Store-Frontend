@@ -1,8 +1,7 @@
 .container{
     margin-left: 1%;
-    margin-top: 8.5%;
     margin-bottom: 5%;
-    width: 79%;
+    width: 82%;
     display: flex;
     flex-direction: column;
     gap: 50px;
@@ -16,7 +15,7 @@
 
 .product img{
     max-width: 100%;
-    min-width: 35%;
+    min-width: 40%;
     max-height: 200px;
     border-radius: 5px;
 }
@@ -41,6 +40,10 @@
     background-color: #007a39;
     border-style: none;
     border-radius: 3px;
+}
+
+.details p{
+    max-lines: 2;
 }
 
 .price{

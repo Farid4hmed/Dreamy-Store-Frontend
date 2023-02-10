@@ -1,19 +1,19 @@
 .sidebar{
     position: sticky;
     top: 0;
-    width: 18%;
+    min-width: 18%;
     height: 60%;
 }
 
 .search{
     margin-top: 35px;
     margin-left: 12%;
-    height: 30px;
+    height: 35px;
     background-color: #f1f5f8;
     border-style: none;
-    border-radius: 5px;
+    border-radius: 3px;
     padding-left: 7px;
-    
+    font-size: 15px;
 }
 
 .sidebar h4{
@@ -38,26 +38,22 @@
     color: #617d98;
     width: 85%;
     margin-left: 10%;
-    margin-bottom: 2px;
-    margin-top: 4px;
+    margin-bottom: 5px;
+    margin-top: 5px;
     background-color: white;
     border-style: none;
     height: 10%;
     text-align: left;
+    font-size: 14px;
+    letter-spacing: 0.1rem;
 }
 
-.company{
-    position: absolute;
-    top: 255px;
-
-}
 
 .brand{
     background-color: #f1f5f8;
     width: 40%;
-    height: 3%;
     margin-left: 12%;
-    margin-top: 20%;
+    margin-top: 5%;
     border-radius: 5px;
     border-style: none;
 }
@@ -70,7 +66,6 @@
     height: 25px;
     width: 70%;
     display: flex;
-    overflow-x: scroll;
     margin-left: 12%;
     margin-top: 2%;
 }
@@ -82,7 +77,6 @@
 }
 
 .colorCircle{
-    opacity: 60%;
     height: 15px;
     width: 15px;
     border-radius: 50%;

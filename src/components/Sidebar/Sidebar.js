@@ -132,12 +132,12 @@ export default function Sidebar(props) {
 
       <h4>Colors</h4>
       <div className={styles.colors}>
-        <button onClick={() => { setColor("All"); props.setProducts([...props.tempProducts]); }} >{color === "All" ? (<u>All</u>) : "All"}</button>
-        <button onClick={() => { setColor("red"); props.setProducts([...props.tempProducts]); }}><div className={styles.colorCircle} style={{ backgroundColor: "red" }}>{color === "red" ? tick : ""}</div></button>
-        <button onClick={() => { setColor("green"); props.setProducts([...props.tempProducts]); }}><div className={styles.colorCircle} style={{ backgroundColor: "green" }}>{color === "green" ? tick : ""}</div></button>
-        <button onClick={() => { setColor("blue"); props.setProducts([...props.tempProducts]); }}><div className={styles.colorCircle} style={{ backgroundColor: "blue" }}>{color === "blue" ? tick : ""}</div></button>
-        <button onClick={() => { setColor("black"); props.setProducts([...props.tempProducts]); }}><div className={styles.colorCircle} style={{ backgroundColor: "black" }}>{color === "black" ? tick : ""}</div></button>
-        <button onClick={() => { setColor("yellow"); props.setProducts([...props.tempProducts]); }}><div className={styles.colorCircle} style={{ backgroundColor: "orange" }}>{color === "yellow" ? tick : ""}</div></button>
+        <button onClick={() => { setColor("All"); props.setProducts([...props.tempProducts]);}} style={color==="All"? {opacity:"100%"}: {opacity:"60%"}}>{color === "All" ? (<u>All</u>) : "All"}</button>
+        <button onClick={() => { setColor("red"); props.setProducts([...props.tempProducts]); }} style={color==="red"? {opacity:"100%"}: {opacity:"60%"}}><div className={styles.colorCircle} style={{ backgroundColor: "red" }}>{color === "red" ? tick : ""}</div></button>
+        <button onClick={() => { setColor("green"); props.setProducts([...props.tempProducts]); }} style={color==="green"? {opacity:"100%"}: {opacity:"60%"}}><div className={styles.colorCircle} style={{ backgroundColor: "green" }}>{color === "green" ? tick : ""}</div></button>
+        <button onClick={() => { setColor("blue"); props.setProducts([...props.tempProducts]); }} style={color==="blue"? {opacity:"100%"}: {opacity:"60%"}}><div className={styles.colorCircle} style={{ backgroundColor: "blue" }}>{color === "blue" ? tick : ""}</div></button>
+        <button onClick={() => { setColor("black"); props.setProducts([...props.tempProducts]); }} style={color==="black"? {opacity:"100%"}: {opacity:"60%"}}><div className={styles.colorCircle} style={{ backgroundColor: "black" }}>{color === "black" ? tick : ""}</div></button>
+        <button onClick={() => { setColor("yellow"); props.setProducts([...props.tempProducts]); }} style={color==="orange"? {opacity:"100%"}: {opacity:"60%"}}><div className={styles.colorCircle} style={{ backgroundColor: "orange" }}>{color === "yellow" ? tick : ""}</div></button>
       </div>
 
       <h4>Price</h4>

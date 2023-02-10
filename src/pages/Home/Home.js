@@ -47,22 +47,18 @@ export default function Home() {
     if (option === "Price (Lowest)") {
       products.sort(byPriceLowest);
       setProducts([...products]);
-      // if (currSearch === "") setTempProducts([...products]);
     }
     else if (option === "Price (Highest)") {
       products.sort(byPriceHighest);
       setProducts([...products]);
-      // if (currSearch === "") setTempProducts([...products]);
     }
     else if (option === "Name (A-Z)") {
       products.sort(byNameAZ);
       setProducts([...products]);
-      // if (currSearch === "") setTempProducts([...products]);
     }
     else if (option === "Name (Z-A)") {
       products.sort(byNameZA);
       setProducts([...products]);
-      // if (currSearch === "") setTempProducts([...products]);
     }
   }
 
@@ -99,26 +95,6 @@ export default function Home() {
       </div>
       {frontPage ?
         <div className={styles.container}>
-          <button className={styles.grid} style={gridView ? blackBG : whiteBG} onClick={handleGridClick}>
-            <div className={styles.box} style={gridView ? whiteBG : blackBG}></div>
-            <div className={styles.box} style={gridView ? whiteBG : blackBG}></div>
-            <div className={styles.box} style={gridView ? whiteBG : blackBG}></div>
-            <div className={styles.box} style={gridView ? whiteBG : blackBG}></div>
-          </button>
-          <button className={styles.list} style={gridView ? whiteBG : blackBG} onClick={handleListClick}>
-            <svg fill={gridView ? "black" : "white"} stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 013 11h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 7h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 3h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z" clip-rule="evenodd"></path></svg>
-          </button>
-          <p className={styles.noOfProducts}>{products.length} Products Found</p>
-          <hr />
-          <form>
-            <label>Sort By</label>
-            <select onChange={(e) => handleSelect(e.target.value)}>
-              <option>Price (Lowest)</option>
-              <option>Price (Highest)</option>
-              <option>Name (A-Z)</option>
-              <option>Name (Z-A)</option>
-            </select>
-          </form>
           <Sidebar
             setProducts={setProducts}
             products={products}
@@ -131,8 +107,35 @@ export default function Home() {
             byNameZA={byNameZA}
             currSort={currSort}
           />
-          {products.length===0? <p className={styles.zeroProds}>No Products Found 😭</p>: ""}
-          {gridView ? <GridView products={products} setFrontPage={setFrontPage} setCurrProduct={setCurrProduct} /> : <ListView products={products} setFrontPage={setFrontPage} setCurrProduct={setCurrProduct} />}
+          <div className={styles.content}>
+            <div className={styles.topLine}>
+              <div className={styles.toggle}>
+                <button className={styles.grid} style={gridView ? blackBG : whiteBG} onClick={handleGridClick}>
+                  <div className={styles.box} style={gridView ? whiteBG : blackBG}></div>
+                  <div className={styles.box} style={gridView ? whiteBG : blackBG}></div>
+                  <div className={styles.box} style={gridView ? whiteBG : blackBG}></div>
+                  <div className={styles.box} style={gridView ? whiteBG : blackBG}></div>
+                </button>
+                <button className={styles.list} style={gridView ? whiteBG : blackBG} onClick={handleListClick}>
+                  <svg fill={gridView ? "black" : "white"} stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 013 11h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 7h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4A.5.5 0 013 3h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z" clip-rule="evenodd"></path></svg>
+                </button>
+              </div>
+              <p className={styles.noOfProducts}>{products.length} Products Found</p>
+              <div className={styles.line}></div>
+              <form>
+                <label>Sort By</label>
+                <select onChange={(e) => handleSelect(e.target.value)}>
+                  <option>Price (Lowest)</option>
+                  <option>Price (Highest)</option>
+                  <option>Name (A-Z)</option>
+                  <option>Name (Z-A)</option>
+                </select>
+              </form>
+            </div>
+            {gridView ? <GridView products={products} setFrontPage={setFrontPage} setCurrProduct={setCurrProduct} /> : <ListView products={products} setFrontPage={setFrontPage} setCurrProduct={setCurrProduct} />}
+            {products.length === 0 ? <p className={styles.zeroProds}>No Products Found 😭</p> : ""}
+          </div>
+
         </div>
         : <Product currProduct={currProduct} setFrontPage={setFrontPage} />}
     </div>
