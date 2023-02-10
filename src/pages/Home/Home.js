@@ -89,9 +89,11 @@ export default function Home() {
   return (
     <div className={styles.background}>
       <div className={styles.navbar}>
+      <div className={styles.breadcrumbs}>
         <h1 className={styles.homeTitle}>Home </h1>
         <h1 className={frontPage ? styles.productsTitleFrontPage : styles.productsTitleProductPage} onClick={() => { setFrontPage(true) }}>/ Products</h1>
         <h1 className={styles.itemTitle}>{!frontPage ? (`/ ${currProduct.name}`) : ""}</h1>
+        </div>
       </div>
       {frontPage ?
         <div className={styles.container}>

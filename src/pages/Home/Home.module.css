@@ -16,13 +16,24 @@
     height:  150px;
     width: 100%;
     background-color: #d7eadb;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+}
+
+.breadcrumbs{
+    margin-left: 10%;
+    width: fit-content;
+    height: 40%;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .homeTitle{
+
     color: rgba(4,129,89,0.923);
-    position: absolute;
-    top: 32%;
-    left: 10%;
+    
 }
 
 .productsTitleFrontPage{
@@ -32,9 +43,7 @@
     -ms-transition:     color 0.5s;
     -o-transition:      color 0.5s;
     transition:         color 0.5s;
-    position: absolute;
-    top: 32%;
-    left: 17%;
+    
 }
 
 .productsTitleProductPage{
@@ -44,9 +53,7 @@
     -ms-transition:     color 0.5s;
     -o-transition:      color 0.5s;
     transition:         color 0.5s;
-    position: absolute;
-    top: 32%;
-    left: 17%;
+    
 }
 
 .productsTitleProductPage:hover{
@@ -56,9 +63,7 @@
 
 .itemTitle{
     color: #32b856;
-    position: absolute;
-    top: 32%;
-    left: 28.4%;
+
 }
 
 .container{
