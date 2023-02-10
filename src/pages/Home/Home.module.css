@@ -74,6 +74,7 @@
 .content{
     min-height: 100%;
     min-width: 80%;
+    max-width: 81%;
 }
 .topLine{
     min-width: 99%;
@@ -93,10 +94,12 @@
 
 .toggle{
     margin-left: 1%;
-    min-width: 6%;
+    min-width: 60px;
+    max-width: 62px;
     display: flex;
     justify-content: space-between;
 }
+
 .grid{
     height: 25px;
     width: 25px;

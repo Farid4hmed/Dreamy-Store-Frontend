@@ -17,6 +17,7 @@
     max-width: 100%;
     min-width: 40%;
     max-height: 200px;
+    min-height: 190px;
     border-radius: 5px;
 }
 

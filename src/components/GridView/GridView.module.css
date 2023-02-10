@@ -10,8 +10,10 @@
 
 .product img{
         border-radius: 5px;
-        min-width: 95%;
+        min-width: 96%;
+        max-width: 96%;
         max-height: 175px;
+        min-height: 170px;
 }
 
 .product img:hover{
