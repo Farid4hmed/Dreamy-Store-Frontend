@@ -1,14 +1,16 @@
 .sidebar{
     position: sticky;
     top: 0;
-    min-width: 18%;
+    min-width: 16%;
     height: 60%;
+    margin-right: 2%;
 }
 
 .search{
     margin-top: 35px;
     margin-left: 12%;
-    height: 35px;
+    min-height: 30px;
+    max-width: 80%;
     background-color: #f1f5f8;
     border-style: none;
     border-radius: 3px;
@@ -19,6 +21,8 @@
 .sidebar h4{
     margin-top: 10%;
     margin-left: 12%;
+    letter-spacing: 0.1rem;
+    color: #102a42;
 }
 
 .category{
