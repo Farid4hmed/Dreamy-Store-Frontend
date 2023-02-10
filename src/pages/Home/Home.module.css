@@ -72,6 +72,7 @@
     position: absolute;
     height: fit-content;
     width: 82%;
+    max-width: 1200px;
     left: 8%;
     margin-top: 4%;
 }
