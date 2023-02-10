@@ -3,7 +3,6 @@
     top: 0;
     width: 18%;
     height: 60%;
-    /* background-color: lightblue; */
 }
 
 .search{
@@ -23,7 +22,7 @@
 }
 
 .category{
-    height: 25%;
+    min-height: 30%;
     display: flex;
     flex-direction: column;
     padding: 5px;

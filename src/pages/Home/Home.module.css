@@ -148,3 +148,11 @@
     font-size: 1rem;
     border-style: none;
 }
+
+.zeroProds{
+    margin-left: 36.5%;
+    margin-top: 20%;
+    min-width: 30%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+}

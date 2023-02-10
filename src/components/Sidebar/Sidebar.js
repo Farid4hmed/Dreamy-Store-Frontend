@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { getCategories, getCompany } from '../../api/products';
 
 import styles from "./Sidebar.module.css";
 export default function Sidebar(props) {
@@ -15,17 +16,21 @@ export default function Sidebar(props) {
   const [categoryList, setCategoryList] = useState([]);
   const [companyList, setCompanyList] = useState([]);
 
-  props.products.forEach((product) => {
-    if (!categoryList.includes(product.category)) {
-      categoryList.push(product.category);
-      setCategoryList([...categoryList]);
-    }
-    if (!companyList.includes(product.company)) {
-      companyList.push(product.company);
-      setCompanyList([...companyList]);
-    }
-  })
 
+  useEffect(() => {
+      getCategory();
+      getCompanies();
+  }, []);
+
+  async function getCategory(){
+      const result = await getCategories();
+      if(result)setCategoryList(result);
+  }
+
+  async function getCompanies(){
+    const result = await getCompany();
+    if(result)setCompanyList(result);
+  }
 
   useEffect(() => {
     let newArray = props.products.filter((product) => {
@@ -114,14 +119,14 @@ export default function Sidebar(props) {
       <div className={styles.category}>
         <button onClick={() => { handleCategory("All"); props.setProducts([...props.tempProducts]); }}>{category === "All" ? (<u>All</u>) : "All"}</button>
         {categoryList && categoryList.map((categ, i) => (
-          <button key={i} onClick={() => { handleCategory(categ); props.setProducts([...props.tempProducts]); }}>{category === categ ? (<u>{categ}</u>) : categ}</button>
+          <button key={i} onClick={() => { handleCategory(categ.name); props.setProducts([...props.tempProducts]); }}>{category === categ.name ? (<u>{categ.name}</u>) : categ.name}</button>
         ))}
       </div>
       <h4 className={styles.company}>Company</h4>
       <select id="company" onChange={e => { handleSelect(e.target.value) }} className={styles.brand}>
         <option>All</option>
         {companyList && companyList.map((company, i) => (
-          <option key={i}>{company}</option>
+          <option key={i}>{company.name}</option>
         ))}
       </select>
 

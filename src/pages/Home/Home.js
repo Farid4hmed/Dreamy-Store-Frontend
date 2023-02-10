@@ -47,22 +47,22 @@ export default function Home() {
     if (option === "Price (Lowest)") {
       products.sort(byPriceLowest);
       setProducts([...products]);
-      if (currSearch === "") setTempProducts([...products]);
+      // if (currSearch === "") setTempProducts([...products]);
     }
     else if (option === "Price (Highest)") {
       products.sort(byPriceHighest);
       setProducts([...products]);
-      if (currSearch === "") setTempProducts([...products]);
+      // if (currSearch === "") setTempProducts([...products]);
     }
     else if (option === "Name (A-Z)") {
       products.sort(byNameAZ);
       setProducts([...products]);
-      if (currSearch === "") setTempProducts([...products]);
+      // if (currSearch === "") setTempProducts([...products]);
     }
     else if (option === "Name (Z-A)") {
       products.sort(byNameZA);
       setProducts([...products]);
-      if (currSearch === "") setTempProducts([...products]);
+      // if (currSearch === "") setTempProducts([...products]);
     }
   }
 
@@ -131,6 +131,7 @@ export default function Home() {
             byNameZA={byNameZA}
             currSort={currSort}
           />
+          {products.length===0? <p className={styles.zeroProds}>No Products Found 😭</p>: ""}
           {gridView ? <GridView products={products} setFrontPage={setFrontPage} setCurrProduct={setCurrProduct} /> : <ListView products={products} setFrontPage={setFrontPage} setCurrProduct={setCurrProduct} />}
         </div>
         : <Product currProduct={currProduct} setFrontPage={setFrontPage} />}
