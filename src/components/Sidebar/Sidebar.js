@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { getCategories, getCompany } from '../../api/products';
 
 import styles from "./Sidebar.module.css";
 export default function Sidebar(props) {
@@ -8,56 +7,32 @@ export default function Sidebar(props) {
       36.204 0L192 312.69 432.095 72.596c9.997-9.99726.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.2079.997-36.204-.001z"></path></svg>)
 
 
-  const [category, setCategory] = useState("All");
-  const [company, setCompany] = useState("All");
-  const [currPrice, setCurrPrice] = useState(3099);
-  const [color, setColor] = useState("All");
-  const [checked, setChecked] = useState(false);
-  const [categoryList, setCategoryList] = useState([]);
-  const [companyList, setCompanyList] = useState([]);
-
-
-  useEffect(() => {
-      getCategory();
-      getCompanies();
-  }, []);
-
-  async function getCategory(){
-      const result = await getCategories();
-      if(result)setCategoryList(result);
-  }
-
-  async function getCompanies(){
-    const result = await getCompany();
-    if(result)setCompanyList(result);
-  }
-
   useEffect(() => {
     let newArray = props.products.filter((product) => {
       return product.name.includes(props.currSearch);
     });
-    if (color !== "All") {
+    if (props.currColor !== "All") {
       newArray = newArray.filter((product) => {
-        return product.colors.includes(color);
+        return product.colors.includes(props.currColor);
       });
     }
     newArray = newArray.filter((product) => {
-      return product.price <= currPrice;
+      return product.price <= props.currPrice;
     });
 
-    if (checked === true) newArray = newArray.filter((product) => {
+    if (props.checked === true) newArray = newArray.filter((product) => {
       return product.freeShipping === 1;
     })
 
-    if (category !== "All") {
+    if (props.category !== "All") {
       newArray = newArray.filter((product) => {
-        return product.category === category;
+        return product.category === props.category;
       })
     }
 
-    if (company !== "All") {
+    if (props.company !== "All") {
       newArray = newArray.filter((product) => {
-        return product.company === company;
+        return product.company === props.company;
       })
     }
 
@@ -76,11 +51,11 @@ export default function Sidebar(props) {
     }
     props.setProducts([...newArray]);
 
-  }, [props.currSearch, color, currPrice, checked, category, company]);
+  }, [props.currSearch, props.currColor, props.currPrice, props.checked, props.category, props.company]);
 
 
   function handleCategory(value) {
-    setCategory(value);
+    props.setCategory(value);
   }
 
   function handleSearchChange(value) {
@@ -89,12 +64,12 @@ export default function Sidebar(props) {
   }
 
   function handleCheck() {
-    setChecked(!checked);
+    props.setChecked(!props.checked);
     props.setProducts([...props.tempProducts]);
   }
 
   function handleSelect(value) {
-    setCompany(value);
+    props.setCompany(value);
     props.setProducts([...props.tempProducts]);
   }
 
@@ -105,47 +80,45 @@ export default function Sidebar(props) {
       document.getElementById("shipping").click();
     }
     props.setCurrSearch("");
-    setCategory("All");
-    setCompany("All");
-    setColor("All");
-    setCurrPrice(3099);
+    props.setCategory("All");
+    props.setCompany("All");
+    props.setCurrColor("All");
+    props.setCurrPrice(props.maxPrice);
     props.setProducts([...props.tempProducts]);
   }
 
   return (
     <div className={styles.sidebar}>
-      <input id="search" onChange={e => { handleSearchChange(e.target.value) }} className={styles.search} placeholder='Search'></input>
+      <input id="search" value={props.currSearch} onChange={e => { handleSearchChange(e.target.value) }} className={styles.search} placeholder='Search'></input>
       <h4>Category</h4>
       <div className={styles.category}>
-        <button onClick={() => { handleCategory("All"); props.setProducts([...props.tempProducts]); }}>{category === "All" ? (<u>All</u>) : "All"}</button>
-        {categoryList && categoryList.map((categ, i) => (
-          <button key={i} onClick={() => { handleCategory(categ.name); props.setProducts([...props.tempProducts]); }}>{category === categ.name ? (<u>{categ.name}</u>) : categ.name}</button>
+        <button onClick={() => { handleCategory("All"); props.setProducts([...props.tempProducts]); }}>{props.category === "All" ? (<u>All</u>) : "All"}</button>
+        {props.categoryList && props.categoryList.map((categ, i) => (
+          <button key={i} onClick={() => { handleCategory(categ); props.setProducts([...props.tempProducts]); }}>{props.category === categ ? (<u>{categ}</u>) : categ}</button>
         ))}
       </div>
       <h4 className={styles.company}>Company</h4>
       <select id="company" onChange={e => { handleSelect(e.target.value) }} className={styles.brand}>
         <option>All</option>
-        {companyList && companyList.map((company, i) => (
-          <option key={i}>{company.name}</option>
+        {props.companyList && props.companyList.map((company, i) => (
+          <option key={i}>{company}</option>
         ))}
       </select>
 
       <h4>Colors</h4>
       <div className={styles.colors}>
-        <button onClick={() => { setColor("All"); props.setProducts([...props.tempProducts]);}} style={color==="All"? {opacity:"100%"}: {opacity:"60%"}}>{color === "All" ? (<u>All</u>) : "All"}</button>
-        <button onClick={() => { setColor("red"); props.setProducts([...props.tempProducts]); }} style={color==="red"? {opacity:"100%"}: {opacity:"60%"}}><div className={styles.colorCircle} style={{ backgroundColor: "red" }}>{color === "red" ? tick : ""}</div></button>
-        <button onClick={() => { setColor("green"); props.setProducts([...props.tempProducts]); }} style={color==="green"? {opacity:"100%"}: {opacity:"60%"}}><div className={styles.colorCircle} style={{ backgroundColor: "green" }}>{color === "green" ? tick : ""}</div></button>
-        <button onClick={() => { setColor("blue"); props.setProducts([...props.tempProducts]); }} style={color==="blue"? {opacity:"100%"}: {opacity:"60%"}}><div className={styles.colorCircle} style={{ backgroundColor: "blue" }}>{color === "blue" ? tick : ""}</div></button>
-        <button onClick={() => { setColor("black"); props.setProducts([...props.tempProducts]); }} style={color==="black"? {opacity:"100%"}: {opacity:"60%"}}><div className={styles.colorCircle} style={{ backgroundColor: "black" }}>{color === "black" ? tick : ""}</div></button>
-        <button onClick={() => { setColor("yellow"); props.setProducts([...props.tempProducts]); }} style={color==="orange"? {opacity:"100%"}: {opacity:"60%"}}><div className={styles.colorCircle} style={{ backgroundColor: "orange" }}>{color === "yellow" ? tick : ""}</div></button>
+        <button onClick={() => { props.setCurrColor("All"); props.setProducts([...props.tempProducts]); }} style={props.currColor === "All" ? { opacity: "100%" } : { opacity: "60%" }}>{props.currColor === "All" ? (<u>All</u>) : "All"}</button>
+        {props.colorList && props.colorList.map((color, i) => (
+          <button key={i} onClick={() => { props.setCurrColor(color); props.setProducts([...props.tempProducts]); }} style={props.currColor === color ? { opacity: "100%" } : { opacity: "60%" }}><div className={styles.colorCircle} style={{ backgroundColor: color}}>{props.currColor ===  color? tick : ""}</div></button>
+        ))}
       </div>
 
       <h4>Price</h4>
-      <p className={styles.price}>${currPrice}</p>
-      <input className={styles.slider} type="range" min="0" max="3099" value={currPrice} onChange={e => { setCurrPrice(e.target.value); props.setProducts([...props.tempProducts]); }}></input>
+      <p className={styles.price}>${props.currPrice}</p>
+      <input className={styles.slider} type="range" min="0" max={props.maxPrice} value={props.currPrice} onChange={e => { props.setCurrPrice(e.target.value); props.setProducts([...props.tempProducts]); }}></input>
       <div className={styles.freeShipping}>
         <p>Free Shipping</p>
-        <input id="shipping" className={styles.checkbox} type="checkbox" checked={checked} onChange={handleCheck}></input>
+        <input id="shipping" className={styles.checkbox} type="checkbox" checked={props.checked} onChange={handleCheck}></input>
       </div>
 
       <button className={styles.clearFilters} onClick={handleClearFilters} >Clear Filters</button>

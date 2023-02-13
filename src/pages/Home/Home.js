@@ -3,23 +3,29 @@ import GridView from '../../components/GridView/GridView';
 import ListView from '../../components/ListView/ListView';
 import Product from '../../components/Product/Product';
 import Sidebar from '../../components/Sidebar/Sidebar';
-
-import { getProducts } from '../../api/products';
+import { getCategories, getColors, getCompany, getMaxPrice, getProducts } from '../../api/products';
 
 import styles from "./Home.module.css";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
   const [tempProducts, setTempProducts] = useState([]);
-
   const [currProduct, setCurrProduct] = useState({});
   const [currSearch, setCurrSearch] = useState("");
-
   const [currSort, setCurrSort] = useState("Price (Lowest)")
   const [frontPage, setFrontPage] = useState(true);
   const blackBG = { background: "black" };
   const whiteBG = { background: "white" };
   const [gridView, setGridView] = useState(true);
+  const [categoryList, setCategoryList] = useState([]);
+  const [companyList, setCompanyList] = useState([]);
+  const [colorList, setColorList] = useState([]);
+  const [maxPrice, setMaxPrice] = useState('');
+  const [currPrice, setCurrPrice] = useState('0');
+  const [category, setCategory] = useState("All");
+  const [company, setCompany] = useState("All");
+  const [currColor, setCurrColor] = useState("All");
+  const [checked, setChecked] = useState(false);
 
   function handleGridClick() {
     setGridView(true);
@@ -28,8 +34,13 @@ export default function Home() {
     setGridView(false);
   }
 
+
   useEffect(() => {
     fetchProducts();
+    getCategory();
+    getCompanies();
+    fetchColors();
+    fetchMaxPrice();
   }, []);
 
 
@@ -40,6 +51,29 @@ export default function Home() {
       setTempProducts(result);
     }
     else console.log("Couldn't fetch products");
+  }
+
+  async function getCategory() {
+    const result = await getCategories();
+    if (result) setCategoryList(result);
+  }
+
+  async function getCompanies() {
+    const result = await getCompany();
+    if (result) setCompanyList(result);
+  }
+
+  async function fetchColors() {
+    const result = await getColors();
+    if (result) setColorList(result);
+  }
+
+  async function fetchMaxPrice() {
+    const result = await getMaxPrice();
+    if (result) {
+      setMaxPrice(result);
+      setCurrPrice(result);
+    }
   }
 
   function handleSelect(option) {
@@ -108,7 +142,21 @@ export default function Home() {
             byNameAZ={byNameAZ}
             byNameZA={byNameZA}
             currSort={currSort}
-          />
+            categoryList={categoryList}
+            companyList={companyList}
+            maxPrice={maxPrice}
+            colorList={colorList}
+            currPrice={currPrice}
+            setCurrPrice={setCurrPrice}
+            category={category}
+            setCategory={setCategory}
+            company={company}
+            setCompany={setCompany}
+            currColor={currColor}
+            setCurrColor={setCurrColor}
+            checked={checked}
+            setChecked={setChecked}
+          />  
           <div className={styles.content}>
             <div className={styles.topLine}>
               <div className={styles.toggle}>
