@@ -98,7 +98,7 @@ export default function Sidebar(props) {
         ))}
       </div>
       <h4 className={styles.company}>Company</h4>
-      <select id="company" onChange={e => { handleSelect(e.target.value) }} className={styles.brand}>
+      <select id="company" onChange={e => { handleSelect(e.target.value) }} value={props.company} className={styles.brand}>
         <option>All</option>
         {props.companyList && props.companyList.map((company, i) => (
           <option key={i}>{company}</option>
