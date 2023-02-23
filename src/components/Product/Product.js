@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 import styles from "./Product.module.css";
 export default function Product(props) {
@@ -61,7 +61,7 @@ export default function Product(props) {
         <div className={styles.container}>
             <div className={styles.image}>
                 <button onClick={handleClick}>BACK TO PRODUCTS</button>
-                <img src={currImg}></img>
+                <img className={styles.frontImg} src={currImg}></img>
                 <div className={styles.imgCollection}>
                 {props.currProduct.imgUrls.map((image, i) => (
                     <img key={i} src={image} onClick={()=>handleImgClick(image)} style={currImg===image?{border: "solid", borderColor:"green"}: {}}></img>
